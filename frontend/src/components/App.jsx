@@ -7,7 +7,7 @@ class App extends Component{
         this.state = {};
     }
     render() {
-        return <h1>React boilerplate test</h1>;
+        return <h1>React boilerplate testing</h1>;
       }
 }
 export default App;
