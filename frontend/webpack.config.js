@@ -6,7 +6,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
@@ -21,7 +21,8 @@ module.exports = {
     ],
   },
   output: {
-    path: path.join(__dirname, '/public'),
-    filename: 'app.js',
+    path: path.join(__dirname, '/dist'),
+    publicPath: '/',
+    filename: 'bundle.js',
   },
 };

@@ -6,4 +6,8 @@ class App extends Component{
         super(props);
         this.state = {};
     }
+    render() {
+        return <h1>React boilerplate test</h1>;
+      }
 }
+export default App;
