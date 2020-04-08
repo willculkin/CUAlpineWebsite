@@ -7,14 +7,12 @@ The front end is done with react and webpack
 - sudo apt-get install node-gyp libssl1.0-dev
 - sudo apt-get install npm
 ## for mac
--brew install node
-
--brew install npm
+- brew install node
+- brew install npm
 
 ## Once node and npm are installed
--npm i -D @reach/router
-
--npm -D node-sass
+- npm i -D @reach/router
+- npm -D node-sass
 
 
 
