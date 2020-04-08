@@ -1,34 +1,36 @@
 {
-  "name": "alpine_club_app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "webpack -d --watch",
-    "react-dev": "webpack -d --watch",
-    "build": "webpack",
-    "start": "webpack-dev-server --mode development"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "name": "reviou",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "chai": "^4.2.0",
-    "express": "^4.16.4",
-    "mocha": "^6.0.2",
-    "mongodb": "^3.1.13",
-    "nodemon": "^1.18.10",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "@babel/preset-react": "^7.9.4",
-    "babel-loader": "^8.1.0",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "@reach/router": "^1.2.1",
+    "lodash": "^4.17.15",
+    "node-sass": "^4.12.0"
   }
 }
