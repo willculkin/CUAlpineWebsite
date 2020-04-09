@@ -1,4 +1,4 @@
-package com.cu.alpine_club;
+package com.cu.alpine_club.model;
 
 import java.util.Date;
 import java.util.HashMap;
