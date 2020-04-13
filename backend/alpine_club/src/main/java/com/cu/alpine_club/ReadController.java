@@ -27,7 +27,7 @@ public class ReadController {
     @RequestMapping("/Read")
     public User home(){
         System.out.println("hello you have reached here dfjknfkjgfhdkgdgfdjkgdfgfd");
-        userMongoRepository.save(new User("Jim", 865));
+        //userMongoRepository.save(new User("Jim", 865));
         User test = userMongoRepository.findByName("Jim"); //.toString();
         System.out.println(test);
 
