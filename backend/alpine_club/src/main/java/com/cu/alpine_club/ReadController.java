@@ -17,6 +17,8 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import com.mongodb.client.MongoClients;
 
+import java.util.List;
+
 @RestController
 public class ReadController {
 
@@ -25,13 +27,13 @@ public class ReadController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping("/Read")
-    public User home(){
+    public List<User> home(){
         System.out.println("hello you have reached here dfjknfkjgfhdkgdgfdjkgdfgfd");
-        //userMongoRepository.save(new User("Jim", 865));
-        User test = userMongoRepository.findByName("Jim"); //.toString();
-        System.out.println(test);
+        //userMongoRepository.save(new User("Jim", 45));
+        List<User> data = userMongoRepository.findByName("Jim"); //.toString();
+        System.out.println(data);
 
         //String test =  mongoOps.findOne(new Query(where("name").is("Joe")), User.class).toString();
-        return test; //"test: writing nonsense";
+        return data; //"test: writing nonsense";
     }
 }

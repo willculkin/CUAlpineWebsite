@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import List from './MembershipComponents/List';
+import { some, isEmpty } from 'lodash';
 
 class Membership extends Component {
   constructor(props) {
     super(props);
-    this.state = {msg: ""};  
+    this.state = {msg: {}};  
   }
   componentDidMount(){
     this.getdata();
@@ -16,14 +18,19 @@ class Membership extends Component {
       }
     })
     .then((res)=>{
-      return res.text();
+      return res.json();
     }).then((msg)=>{
       console.log(msg);
       this.setState({msg:msg});
     })
   }
   render() {
-  return <div>{this.state.msg}</div>;
+    if(isEmpty(this.state.msg)){
+      return <div>Empty</div>;
+    } else {
+      return <List data={this.state.msg}/>;
+    } 
+    //<div>{this.state.msg}</div>;
   }
 }
 
