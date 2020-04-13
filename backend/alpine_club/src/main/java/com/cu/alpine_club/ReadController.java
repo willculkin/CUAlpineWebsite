@@ -21,13 +21,14 @@ import com.mongodb.client.MongoClients;
 public class ReadController {
 
     @Autowired
-    UserMongoRepository UserMongoRepository;
+    UserMongoRepository userMongoRepository;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping("/Read")
     public User home(){
         System.out.println("hello you have reached here dfjknfkjgfhdkgdgfdjkgdfgfd");
-        User test = UserMongoRepository.findByName("Jim"); //.toString();
+        userMongoRepository.save(new User("Jim", 865));
+        User test = userMongoRepository.findByName("Jim"); //.toString();
         System.out.println(test);
 
         //String test =  mongoOps.findOne(new Query(where("name").is("Joe")), User.class).toString();

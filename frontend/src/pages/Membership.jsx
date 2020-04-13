@@ -9,7 +9,7 @@ class Membership extends Component {
     this.getdata();
   }
   getdata(){
-    fetch('http://localhost:8080/Read',{
+    fetch('http://localhost:8080/users',{
       mode: 'cors',
       headers: {
         'Access-Control-Allow-Origin':"*"
