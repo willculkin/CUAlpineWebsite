@@ -1,4 +1,4 @@
-package com.cu.alpine_club.model;
+package com.cu.alpine_club.repository;
 
 import com.cu.alpine_club.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;

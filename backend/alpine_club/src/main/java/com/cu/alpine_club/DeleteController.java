@@ -1,4 +1,4 @@
-package com.cu.alpine_club.controller;
+package com.cu.alpine_club;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
