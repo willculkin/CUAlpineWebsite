@@ -1,7 +1,7 @@
 const DisscusionTest = [
   {
     id: 1,
-    text: "FirstBox",
+    text: "First Post",
     completed: true,
   },
   {
@@ -11,12 +11,12 @@ const DisscusionTest = [
   },
   {
     id: 3,
-    text: "FirstBox",
+    text: "third",
     completed: true,
   },
   {
     id: 4,
-    text: "Second box has more crap ",
+    text: "fourth at the top cause would be most recent ",
     completed: true,
   },
 ];

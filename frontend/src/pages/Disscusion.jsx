@@ -35,14 +35,14 @@ class Disscusion extends Component {
   }
 
   render() {
-    const list = this.state.textBoxs.map((item) => (
-      <ReadOnlyPost info={item} />
-    ));
+    //this is a slow/space heavy way to get the posts in the right order
+    const list = this.state.textBoxs
+      .slice(0)
+      .reverse()
+      .map((item) => <ReadOnlyPost info={item} />);
     return (
       <div>
         <h1>Disscusion Board</h1>
-        {list}
-
         <form>
           <TextareaAutosize
             value={this.state.currentBox}
@@ -52,6 +52,8 @@ class Disscusion extends Component {
 
           <button onClick={this.handleClick}>Sumbit</button>
         </form>
+        {list}
+
         <h2>{this.state.currentBox}</h2>
       </div>
     );
