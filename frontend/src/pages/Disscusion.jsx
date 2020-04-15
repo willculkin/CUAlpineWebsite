@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import DisscusionTest from "./DisscusionTest";
-import TextBox from "./DisscusionComponents/ActivePost";
+import ActivePost from "./DisscusionComponents/ActivePost";
 import ReadOnlyPost from "./DisscusionComponents/ReadOnlyPost";
 import TextareaAutosize from "react-autosize-textarea";
 
 class Disscusion extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = {
       textBoxs: DisscusionTest,
       currentBox: "",
@@ -42,7 +43,9 @@ class Disscusion extends Component {
       .map((item) => <ReadOnlyPost info={item} />);
     return (
       <div>
-        <h1>Disscusion Board</h1>
+        <h1>
+          {this.props.name !== undefined ? this.props.name : "Disscusion Board"}
+        </h1>
         <form>
           <TextareaAutosize
             value={this.state.currentBox}
