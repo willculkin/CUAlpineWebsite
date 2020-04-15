@@ -1,4 +1,4 @@
-package com.cu.alpine_club;
+package com.cu.alpine_club.controller.members;
 
 import com.cu.alpine_club.model.User;
 import com.cu.alpine_club.repository.UserMongoRepository;
@@ -20,14 +20,14 @@ import com.mongodb.client.MongoClients;
 import java.util.List;
 
 @RestController
-public class ReadController {
+public class ReadMemberController {
 
     @Autowired
     UserMongoRepository userMongoRepository;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping("/Read")
-    public List<User> home(){
+    public List<User> readMember(){
         System.out.println("hello you have reached here dfjknfkjgfhdkgdgfdjkgdfgfd");
         //userMongoRepository.save(new User("Jim", 45));
         List<User> data = userMongoRepository.findByName("Jim"); //.toString();

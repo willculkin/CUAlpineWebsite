@@ -18,7 +18,7 @@ function App() {
       icon: "ion-ios-home",
     },
     {
-      text: "Disscusion",
+      text: "Discussion",
       path: "/disscusion",
       icon: "ion-ios-business",
     },

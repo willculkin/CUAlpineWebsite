@@ -16,13 +16,46 @@ class Disscusion extends Component {
   }
 
   componentDidMount() {
-    //fetchData
+    this.getdata()
   }
+  getdata(){
+    fetch('http://localhost:8080/ReadDiscussion',{
+      mode: 'cors',
+      headers: {
+        'Access-Control-Allow-Origin':"*"
+      }
+    })
+    .then((res)=>{
+      return res.json();
+    }).then((msg)=>{
+      console.log(msg);
+      this.setState({textBoxs:msg});
+    })
+  }
+  putdata(data){
+    fetch('http://localhost:8080/CreateDiscussion',{
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Access-Control-Allow-Origin':"*",
+        'Content-Type': 'application/json'
+      },
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify(data)
+    }).then((res)=>{
+      return res.json();
+    }).then((msg)=>{
+      return msg;
+    })
+  }
+
   //this needs to go to a data base and should work
-  handleClick() {
+  handleClick(event) {
     const textBoxs = this.state.textBoxs;
     const currentBox = "";
-    textBoxs.textBoxs.push(currentBox);
+    this.putdata(this.state.currentBox);
+    textBoxs.push(currentBox);
     this.setState({
       textBoxs: textBoxs,
       currentBox: currentBox,
@@ -42,7 +75,7 @@ class Disscusion extends Component {
       .map((item) => <ReadOnlyPost info={item} />);
     return (
       <div>
-        <h1>Disscusion Board</h1>
+        <h1>Discussion Board</h1>
         <form>
           <TextareaAutosize
             value={this.state.currentBox}
@@ -50,7 +83,7 @@ class Disscusion extends Component {
             onChange={this.handleChange}
           />
 
-          <button onClick={this.handleClick}>Sumbit</button>
+          <button onClick={this.handleClick}>Submit</button>
         </form>
         {list}
 

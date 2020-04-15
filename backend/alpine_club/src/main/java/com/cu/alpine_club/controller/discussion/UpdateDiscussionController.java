@@ -1,12 +1,12 @@
-package com.cu.alpine_club;
+package com.cu.alpine_club.controller.discussion;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UpdateController {
+public class UpdateDiscussionController {
 
-    @RequestMapping("/Update")
+    @RequestMapping("/UpdateDiscussion")
     public String home(){
         return "Hello World!";
     }
