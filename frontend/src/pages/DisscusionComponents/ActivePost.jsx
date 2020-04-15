@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import TextareaAutosize from "react-autosize-textarea";
 
-function TextBox(props) {
+function ActivePost(props) {
   return (
     <form>
       <TextareaAutosize
@@ -12,9 +12,9 @@ function TextBox(props) {
         onChange={(event) => props.handleChange(event)}
       />
 
-      <button onClick={() => props.handleClick()}>Sumbit</button>
+      <button onClick={(event) => props.handleClick()}>Sumbit</button>
     </form>
   );
 }
 
-export default TextBox;
+export default ActivePost;

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import ListPart from './ListPart';
+import React, { Component } from "react";
+import ListPart from "./ListPart";
 
 class List extends Component{
     constructor(props){
@@ -11,12 +11,7 @@ class List extends Component{
            return <ListPart key={item.id} value = {item}/>
         });
 
-        return (
-            <ul>
-                {Items}
-            </ul>
-        );
-
-    }
+    return <ul>{Items}</ul>;
+  }
 }
 export default List;
