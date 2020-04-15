@@ -6,7 +6,7 @@ class List extends Component{
         super(props);
     }
     render(){
-        const data = this.props.data;
+        const data = Array.from(this.props.data);
         const Items = data.map((item)=>{
            return <ListPart key={item.id} value = {item}/>
         });
