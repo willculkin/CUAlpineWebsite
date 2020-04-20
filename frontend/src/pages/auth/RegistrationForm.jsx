@@ -1,7 +1,6 @@
 import React from "react";
 import OktaAuth from "@okta/okta-auth-js";
 import { withAuth } from "@okta/okta-react";
-
 import config from "../../app.config";
 
 export default withAuth(
@@ -13,6 +12,7 @@ export default withAuth(
         lastName: "",
         email: "",
         password: "",
+        reEnterPassword: "",
         sessionToken: null,
       };
       this.oktaAuth = new OktaAuth({ url: config.url });
@@ -24,6 +24,9 @@ export default withAuth(
       this.handleLastNameChange = this.handleLastNameChange.bind(this);
       this.handleEmailChange = this.handleEmailChange.bind(this);
       this.handlePasswordChange = this.handlePasswordChange.bind(this);
+      this.handlereEnterPasswordChange = this.handlereEnterPasswordChange.bind(
+        this
+      );
     }
 
     async checkAuthentication() {
@@ -49,9 +52,24 @@ export default withAuth(
     handlePasswordChange(e) {
       this.setState({ password: e.target.value });
     }
+    handlereEnterPasswordChange(e) {
+      this.setState({ reEnterPassword: e.target.value });
+    }
+
+    arePasswordsTheSame() {
+      if (
+        this.state.password === this.state.reEnterPassword &&
+        this.state.password.length > 5
+      ) {
+        return true;
+      }
+      return false;
+    }
 
     handleSubmit(e) {
-      console.log(this.state.email);
+      if (!this.arePasswordsTheSame()) {
+        return <h1>Passwords are different or not long enough try again</h1>;
+      }
       e.preventDefault();
       fetch("/api/users", {
         method: "POST",
@@ -81,7 +99,13 @@ export default withAuth(
         this.props.auth.redirect({ sessionToken: this.state.sessionToken });
         return null;
       }
-
+      const submit = !this.arePasswordsTheSame() ? (
+        <h3>
+          Please make sure the passwords are the same and at least 6 characters
+        </h3>
+      ) : (
+        ""
+      );
       return (
         <form onSubmit={this.handleSubmit}>
           <div className="form-element">
@@ -120,6 +144,16 @@ export default withAuth(
               onChange={this.handlePasswordChange}
             />
           </div>
+          <div className="form-element">
+            <label>Re-Enter Password:</label>
+            <input
+              type="password"
+              id="reEnterPassword"
+              value={this.state.reEnterPassword}
+              onChange={this.handlereEnterPasswordChange}
+            />
+          </div>
+          {submit}
           <input type="submit" id="submit" value="Register" />
         </form>
       );
