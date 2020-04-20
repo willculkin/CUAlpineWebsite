@@ -1,49 +1,22 @@
 import React, { Component } from "react";
 
-import { Router } from "@reach/router";
 import Disscusion from "./pages/Disscusion.jsx";
 import Photos from "./pages/Photos.jsx";
 import Membership from "./pages/Membership.jsx";
 import Trips from "./pages/Trips.jsx";
 import Home from "./pages/Home.jsx";
-import Login from "./pages/Login.jsx";
-import ResponsiveNavigation from "./components/ResponsiveNavigation";
 import logo from "./logo.svg";
 import "./App.css";
 
-const navLinks = [
-  {
-    text: "Home",
-    path: "/home",
-    icon: "ion-ios-home",
-  },
-  {
-    text: "Disscusion",
-    path: "/disscusion",
-    icon: "ion-ios-business",
-  },
-  {
-    text: "Photos",
-    path: "/photos",
-    icon: "ion-ios-megaphone",
-  },
+import { Route } from "react-router-dom";
+import { SecureRoute, ImplicitCallback } from "@okta/okta-react";
 
-  {
-    text: "Trips",
-    path: "/trips",
-    icon: "ion-ios-bonfire",
-  },
-  {
-    text: "Membership",
-    path: "/membership",
-    icon: "ion-ios-briefcase",
-  },
-  {
-    text: "Login",
-    path: "/login",
-    icon: "ion-ios-briefcase",
-  },
-];
+import Navigation from "./pages/shared/Navigation";
+import RegistrationForm from "./pages/auth/RegistrationForm";
+import config from "./app.config";
+import LoginPage from "./pages/Login";
+import ProfilePage from "./pages/auth/ProfilePage";
+
 class App extends Component {
   constructor() {
     super();
@@ -61,22 +34,26 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ResponsiveNavigation
-          navLinks={navLinks}
+        <Navigation
           logo={logo}
           background="#fff"
           hoverBackground="#ddd"
           linkColor="#777"
         />
-        <Router>
-          <Photos path="/photos" />
-          <Home path="/home" />
-          <Membership path="/membership" />
-          <Trips path="/trips" />
-          <Disscusion path="/disscusion" />
-          <Login path="/login" />
-        </Router>
-        <textarea value={this.state.value} onChange={this.handleChange} />
+        <main>
+          <Route path="/" exact component={Home} />
+          <Route
+            path="/login"
+            render={() => <LoginPage baseUrl={config.url} />}
+          />
+          <Route path="/implicit/callback" component={ImplicitCallback} />
+          <Route path="/trips" component={Trips} />
+          <Route path="/photos" component={Photos} />
+          <Route path="/register" component={RegistrationForm} />
+          <Route path="/membership" component={Membership} />
+          <Route path="/disscusion" component={Disscusion} />
+          <SecureRoute path="/profile" component={ProfilePage} />
+        </main>
       </div>
     );
   }

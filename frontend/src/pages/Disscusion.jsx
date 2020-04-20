@@ -17,38 +17,41 @@ class Disscusion extends Component {
   }
 
   componentDidMount() {
-    this.getdata()
+    this.getdata();
   }
-  getdata(){
-    fetch('http://localhost:8080/ReadDiscussion',{
-      mode: 'cors',
+  getdata() {
+    fetch("http://localhost:8080/ReadDiscussion", {
+      mode: "cors",
       headers: {
-        'Access-Control-Allow-Origin':"*"
-      }
-    })
-    .then((res)=>{
-      return res.json();
-    }).then((msg)=>{
-      console.log(msg);
-      this.setState({textBoxs:msg});
-    })
-  }
-  putdata(data){
-    fetch('http://localhost:8080/CreateDiscussion',{
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Access-Control-Allow-Origin':"*",
-        'Content-Type': 'application/json'
+        "Access-Control-Allow-Origin": "*",
       },
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
-      body: JSON.stringify(data)
-    }).then((res)=>{
-      return res.json();
-    }).then((msg)=>{
-      return msg;
     })
+      .then((res) => {
+        return res.json();
+      })
+      .then((msg) => {
+        console.log(msg);
+        this.setState({ textBoxs: msg });
+      });
+  }
+  putdata(data) {
+    fetch("http://localhost:8080/CreateDiscussion", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((msg) => {
+        return msg;
+      });
   }
 
   //this needs to go to a data base and should work
@@ -70,7 +73,7 @@ class Disscusion extends Component {
 
   render() {
     //this is a slow/space heavy way to get the posts in the right order
-    const list = this.state.textBoxs
+    const list = Array.from(this.state.textBoxs)
       .slice(0)
       .reverse()
       .map((item) => <ReadOnlyPost info={item} />);
