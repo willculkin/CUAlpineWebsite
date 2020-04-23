@@ -16,6 +16,7 @@ import RegistrationForm from "./pages/auth/RegistrationForm";
 import config from "./app.config";
 import LoginPage from "./pages/Login";
 import ProfilePage from "./pages/auth/ProfilePage";
+import SelectedYearPhotos from "./pages/PhotosComponents/SelectedYearPhotos.jsx";
 
 class App extends Component {
   constructor() {
@@ -50,9 +51,10 @@ class App extends Component {
           <Route path="/trips" component={Trips} />
           <Route path="/photos" component={Photos} />
           <Route path="/register" component={RegistrationForm} />
-          <Route path="/membership" component={Membership} />
+          <SecureRoute path="/membership" component={Membership} />
           <Route path="/disscusion" component={Disscusion} />
           <SecureRoute path="/profile" component={ProfilePage} />
+          <Route path="/selectedyearphotos" component={SelectedYearPhotos} />
         </main>
       </div>
     );
