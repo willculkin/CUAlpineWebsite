@@ -26,7 +26,7 @@ public class ReadMemberController {
     UserMongoRepository userMongoRepository;
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping("/Read")
+    @RequestMapping("/ReadMember")
     public List<User> readMember(){
         System.out.println("hello you have reached here dfjknfkjgfhdkgdgfdjkgdfgfd");
         //userMongoRepository.save(new User("Jim", 45));

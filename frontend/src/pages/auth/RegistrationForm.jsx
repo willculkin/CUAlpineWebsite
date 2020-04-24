@@ -107,58 +107,55 @@ export default withAuth(
         ""
       );
       return (
-        <div>
-          <h1>Please sign up for an accout here</h1>
-          <form onSubmit={this.handleSubmit}>
-            <div className="form-element">
-              <label>Email:</label>
-              <input
-                type="email"
-                id="email"
-                value={this.state.email}
-                onChange={this.handleEmailChange}
-              />
-            </div>
-            <div className="form-element">
-              <label>First Name:</label>
-              <input
-                type="text"
-                id="firstName"
-                value={this.state.firstName}
-                onChange={this.handleFirstNameChange}
-              />
-            </div>
-            <div className="form-element">
-              <label>Last Name:</label>
-              <input
-                type="text"
-                id="lastName"
-                value={this.state.lastName}
-                onChange={this.handleLastNameChange}
-              />
-            </div>
-            <div className="form-element">
-              <label>Password:</label>
-              <input
-                type="password"
-                id="password"
-                value={this.state.password}
-                onChange={this.handlePasswordChange}
-              />
-            </div>
-            <div className="form-element">
-              <label>Re-Enter Password:</label>
-              <input
-                type="password"
-                id="reEnterPassword"
-                value={this.state.reEnterPassword}
-                onChange={this.handlereEnterPasswordChange}
-              />
-            </div>
-            {submit}
-            <input type="submit" id="submit" value="Register" />
-          </form>
-        </div>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-element">
+            <label>Email:</label>
+            <input
+              type="email"
+              id="email"
+              value={this.state.email}
+              onChange={this.handleEmailChange}
+            />
+          </div>
+          <div className="form-element">
+            <label>First Name:</label>
+            <input
+              type="text"
+              id="firstName"
+              value={this.state.firstName}
+              onChange={this.handleFirstNameChange}
+            />
+          </div>
+          <div className="form-element">
+            <label>Last Name:</label>
+            <input
+              type="text"
+              id="lastName"
+              value={this.state.lastName}
+              onChange={this.handleLastNameChange}
+            />
+          </div>
+          <div className="form-element">
+            <label>Password:</label>
+            <input
+              type="password"
+              id="password"
+              value={this.state.password}
+              onChange={this.handlePasswordChange}
+            />
+          </div>
+          <div className="form-element">
+            <label>Re-Enter Password:</label>
+            <input
+              type="password"
+              id="reEnterPassword"
+              value={this.state.reEnterPassword}
+              onChange={this.handlereEnterPasswordChange}
+            />
+          </div>
+          {submit}
+          <input type="submit" id="submit" value="Register" />
+        </form>
       );
     }
   }

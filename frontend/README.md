@@ -16,7 +16,7 @@ The front end is done with react and webpack
 
 #### install these as dependancies if they aren't already.
 
-- npm i -D @reach/router
+- npm i -D @react/router
 - npm i -D node-sass
 - npm install --save react-autosize-textarea
 - npm install @okta/okta-react@1.2.3 react-router-dom@5.0.1 --save

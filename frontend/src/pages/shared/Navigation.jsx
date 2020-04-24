@@ -4,12 +4,7 @@ import { withAuth } from "@okta/okta-react";
 import NormalUserLinks from "./NavLinks/NormalUserLinks";
 import LoggoutOutLinks from "./NavLinks/LoggoutOutLinks";
 import BoardMemberLinks from "./NavLinks/BoardMemberLinks";
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
+
 //import navLinks from "./"
 export default withAuth(
   class Navigation extends React.Component {

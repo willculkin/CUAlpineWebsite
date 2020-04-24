@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UpdateMemberController {
 
-    @RequestMapping("/Update")
+    @RequestMapping("/UpdateMember")
     public String updateMember(){
         return "Hello World!";
     }

@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import HomePhotos from "./PhotosComponents/HomePhotos";
+import React, { Component } from 'react'
 
 class Contact extends Component {
-  render() {
-    return <HomePhotos />;
-  }
+    render () {
+        return (
+            <div>Contact</div>
+        )
+    }
 }
 
-export default Contact;
+export default Contact

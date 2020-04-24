@@ -1,7 +1,6 @@
 import React from "react";
 import OktaAuth from "@okta/okta-auth-js";
 import { withAuth } from "@okta/okta-react";
-import { Link } from "react-router-dom";
 
 export default withAuth(
   class LoginForm extends React.Component {
@@ -58,41 +57,29 @@ export default withAuth(
       ) : null;
 
       return (
-        <div>
-          <h1>Welcome to the login page</h1>
-          <h3>To get a membership or view your profile please login</h3>
+        <form onSubmit={this.handleSubmit}>
+          {errorMessage}
+          <div className="form-element">
+            <label>Username:</label>
+            <input
+              id="username"
+              type="text"
+              value={this.state.username}
+              onChange={this.handleUsernameChange}
+            />
+          </div>
 
-          <form onSubmit={this.handleSubmit}>
-            {errorMessage}
-            <div className="form-element">
-              <label>Username:</label>
-              <input
-                id="username"
-                type="text"
-                value={this.state.username}
-                onChange={this.handleUsernameChange}
-              />
-            </div>
-
-            <div className="form-element">
-              <label>Password:</label>
-              <input
-                id="password"
-                type="password"
-                value={this.state.password}
-                onChange={this.handlePasswordChange}
-              />
-            </div>
-            <input id="submit" type="submit" value="Submit" />
-          </form>
-          <br />
-          <br />
-
-          <Link to={"./register"} style={{ color: "black" }}>
-            {" "}
-            {"If you don't have a profile click here to create one!"}
-          </Link>
-        </div>
+          <div className="form-element">
+            <label>Password:</label>
+            <input
+              id="password"
+              type="password"
+              value={this.state.password}
+              onChange={this.handlePasswordChange}
+            />
+          </div>
+          <input id="submit" type="submit" value="Submit" />
+        </form>
       );
     }
   }
