@@ -26,11 +26,9 @@ public class ReadMemberController {
     UserMongoRepository userMongoRepository;
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping("/Read")
+    @RequestMapping("/ReadUser")
     public List<User> readMember(){
-        System.out.println("hello you have reached here dfjknfkjgfhdkgdgfdjkgdfgfd");
-        //userMongoRepository.save(new User("Jim", 45));
-        List<User> data = userMongoRepository.findByName("Jim"); //.toString();
+        List<User> data = userMongoRepository.findAll();  //.toString();
         System.out.println(data);
 
         //String test =  mongoOps.findOne(new Query(where("name").is("Joe")), User.class).toString();
