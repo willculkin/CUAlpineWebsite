@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DeleteMemberController {
 
-    @RequestMapping("/Delete")
+    @RequestMapping("/DeleteMember")
     public String deleteMember(){
         return "Hello World!";
     }
