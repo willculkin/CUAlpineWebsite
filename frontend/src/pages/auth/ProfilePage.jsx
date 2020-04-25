@@ -17,7 +17,7 @@ class ProfilePage extends React.Component {
   }
 
   handleSubmit(e) {
-    localStorage.setItem("authticated", false);
+    localStorage.setItem("authenticated", false);
     this.setState({ isLoggedIn: false });
   }
   render() {

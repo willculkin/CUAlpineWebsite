@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
@@ -20,18 +21,20 @@ import com.mongodb.client.MongoClients;
 import java.util.List;
 
 @RestController
-public class ReadMemberController {
+public class CheckMemberController {
 
     @Autowired
     UserMongoRepository userMongoRepository;
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping("/ReadUser")
-    public List<User> readMember(){
-        List<User> data = userMongoRepository.findAll();  //.toString();
-        System.out.println(data);
-
-        //String test =  mongoOps.findOne(new Query(where("name").is("Joe")), User.class).toString();
-        return data; //"test: writing nonsense";
+    @RequestMapping("/CheckUser")
+    public boolean checkMember(@RequestBody String payload) throws Exception {
+        boolean empty;
+        List<User> test =  userMongoRepository.findByName(payload);
+        if(test.isEmpty()){
+          return false;
+        }
+        System.out.println(test);
+        return true;
     }
 }

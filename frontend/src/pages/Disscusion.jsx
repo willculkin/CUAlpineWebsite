@@ -92,8 +92,6 @@ class Disscusion extends Component {
           <button onClick={this.handleClick}>Submit</button>
         </form>
         {list}
-
-        <h2>{this.state.currentBox}</h2>
       </div>
     );
   }
