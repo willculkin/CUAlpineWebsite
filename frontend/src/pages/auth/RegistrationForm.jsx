@@ -1,25 +1,26 @@
-import React from "react";
+import React, { Component } from "react";
+import ActivePost from "../DisscusionComponents/ActivePost";
+import ReadOnlyPost from "../DisscusionComponents/ReadOnlyPost";
+import TextareaAutosize from "react-autosize-textarea";
 import { Link } from "react-router-dom";
 
-class RegistrationForm extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      reEnterPassword: "",
-    };
+class RegistrationForm extends Component {
+  constructor(props) {
+    super(props);
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
-    this.handleLastNameChange = this.handleLastNameChange.bind(this);
+    this.state = {
+      passBox: "",
+      emailBox: "",
+      firstNameBox: "",
+      lastNameBox: "",
+      rePasswordBox: "",
+    };
+    this.handleClick = this.handleClick.bind(this);
+    this.handleFNChange = this.handleFNChange.bind(this);
+    this.handleLNChange = this.handleLNChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handlereEnterPasswordChange = this.handlereEnterPasswordChange.bind(
-      this
-    );
+    this.handlePassChange = this.handlePassChange.bind(this);
+    this.handlereEnterPasswordChange = this.handlereEnterPasswordChange.bind(this);
   }
 
   putdata(data) {
@@ -42,113 +43,117 @@ class RegistrationForm extends React.Component {
       });
   }
 
-  handleFirstNameChange(e) {
-    this.setState({ firstName: e.target.value });
+  //this needs to go to a data base and should work
+  handleClick(event) {
+    const passBox = "";
+    const emailBox = "";
+    const firstNameBox = "";
+    const lastNameBox = "";
+    const rePasswordBox = "";
+    if (!this.arePasswordsTheSame()) {
+      return <h1>Passwords are different or not long enough try again</h1>;
+    }
+    this.putdata(this.state.emailBox);
+    this.setState({
+      passBox: passBox,
+      rePasswordBox: rePasswordBox,
+      emailBox: emailBox,
+      firstNameBox: firstNameBox,
+      lastNameBox: lastNameBox,
+    });
+    localStorage.setItem("authenticated", true);
   }
-  handleLastNameChange(e) {
-    this.setState({ lastName: e.target.value });
+
+  handleFNChange(event) {
+    const { value } = event.target;
+    this.setState({ firstNameBox: value });
   }
-  handleEmailChange(e) {
-    this.setState({ email: e.target.value });
+  handleLNChange(event) {
+    const { value } = event.target;
+    this.setState({ lastNameBox: value });
   }
-  handlePasswordChange(e) {
-    this.setState({ password: e.target.value });
+  handleEmailChange(event) {
+    const { value } = event.target;
+    this.setState({ emailBox: value });
   }
-  handlereEnterPasswordChange(e) {
-    this.setState({ reEnterPassword: e.target.value });
+  handlePassChange(event) {
+    const { value } = event.target;
+    this.setState({ passBox: value });
+  }
+
+  handlereEnterPasswordChange(event) {
+    const { value } = event.target;
+    this.setState({ rePasswordBox: value });
   }
 
   arePasswordsTheSame() {
-    if (
-      this.state.password === this.state.reEnterPassword &&
-      this.state.password.length > 5
-    ) {
+    if (this.state.passBox === this.state.rePasswordBox && this.state.passBox.length > 5) {
       return true;
     }
     return false;
   }
 
-  //need to get a returned user to add to local state
-  //also check to make sure that the account doesn't already exist
-  handleSubmit(e) {
-    if (!this.arePasswordsTheSame()) {
-      return <h1>Passwords are different or not long enough try again</h1>;
-    }
-    this.putdata(this.state);
-    localStorage.setItem("authticated", true);
+  render() {
+
+  if (JSON.parse(localStorage.getItem("authenticated"))) {
+    return (
+      <Link to={"./profile"} style={{ color: "balck" }}>
+        Your already logged in please click here to go to your profile
+      </Link>
+    );
   }
 
-  render() {
-    console.log(this.state);
-
-    if (JSON.parse(localStorage.getItem("authticated"))) {
-      return (
-        <Link to={"./profile"} style={{ color: "balck" }}>
-          Your already logged in please click here to go to your profile
-        </Link>
-      );
-    }
-    const submit = !this.arePasswordsTheSame() ? (
-      <h3>
-        Please make sure the passwords are the same and at least 6 characters
-      </h3>
+  const submit = !this.arePasswordsTheSame() ? (
+    <h3>
+      Please make sure the passwords are the same and at least 6 characters
+    </h3>
     ) : (
-      ""
+    ""
     );
+
     return (
       <div>
-        <h1>Please sign up for an accout here</h1>
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-element">
-            <label>Email:</label>
-            <input
-              type="email"
-              id="email"
-              value={this.state.email}
-              onChange={this.handleEmailChange}
-            />
-          </div>
-          <div className="form-element">
-            <label>First Name:</label>
-            <input
-              type="text"
-              id="firstName"
-              value={this.state.firstName}
-              onChange={this.handleFirstNameChange}
-            />
-          </div>
-          <div className="form-element">
-            <label>Last Name:</label>
-            <input
-              type="text"
-              id="lastName"
-              value={this.state.lastName}
-              onChange={this.handleLastNameChange}
-            />
-          </div>
-          <div className="form-element">
-            <label>Password:</label>
-            <input
-              type="password"
-              id="password"
-              value={this.state.password}
-              onChange={this.handlePasswordChange}
-            />
-          </div>
-          <div className="form-element">
-            <label>Re-Enter Password:</label>
-            <input
-              type="password"
-              id="reEnterPassword"
-              value={this.state.reEnterPassword}
-              onChange={this.handlereEnterPasswordChange}
-            />
-          </div>
+        <h1>
+          {this.props.name !== undefined ? this.props.name : "Member Registration"}
+        </h1>
+        <form>
+          <label>First Name: </label>
+          <TextareaAutosize
+            value={this.state.firstNameBox}
+            onChange={this.handleFNChange}
+          />
+          <br/>
+          <label>Last Name: </label>
+          <TextareaAutosize
+            value={this.state.lastNameBox}
+            onChange={this.handleLNChange}
+          />
+          <br/>
+          <label>Email: </label>
+          <TextareaAutosize
+            value={this.state.emailBox}
+            onChange={this.handleEmailChange}
+          />
+          <br/>
+          <label>Password: </label>
+          <TextareaAutosize
+            value={this.state.passBox}
+            onChange={this.handlePassChange}
+          />
+          <br/>
+          <label>Re-Enter Password: </label>
+          <TextareaAutosize
+            value={this.state.rePasswordBox}
+            onChange={this.handlereEnterPasswordChange}
+          />
+          <br/>
           {submit}
-          <input type="submit" id="submit" value="Register" />
+          <br/>
+          <button onClick={this.handleClick}>Submit</button>
         </form>
       </div>
     );
   }
 }
+
 export default RegistrationForm;

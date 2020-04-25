@@ -6,7 +6,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: null,
+      isLoggedIn: false,
       error: null,
       username: "",
       password: "",
@@ -16,10 +16,35 @@ class Login extends React.Component {
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
+  getData(data){
+    fetch("http://localhost:8080/CheckUser", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(data),
+    })
+    .then((res) => res.json())
+    .then((msg) => {
+      if(msg){
+        console.log(msg);
+        localStorage.setItem("authenticated", true);
+        this.setState({ isLoggedIn: true });
+      } else {
+        localStorage.setItem("authenticated", false);
+        this.setState({ isLoggedIn: false });
+      }
+    });
+  }
 
-  handleSubmit(e) {
-    localStorage.setItem("authticated", true);
-    this.setState({ isLoggedIn: true });
+  handleSubmit(data) {
+    const isLoggedIn = true;
+    this.getData(this.state.username);
+    this.setState({ isLoggedIn: isLoggedIn });
   }
 
   handleUsernameChange(e) {
