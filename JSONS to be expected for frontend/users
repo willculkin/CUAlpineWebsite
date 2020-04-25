@@ -1,0 +1,14 @@
+const user = [
+  {
+    firstName: "Will",
+    LastName: "Culkin",
+    MembershipStatus: true
+    TripsOn: [
+        "Shelf Road" , "Rifle" ," ETC"
+    ]
+    TripsApplied: [
+        "Shelf Road" , "Rifle" ," Indian Creek" ," ETC"
+    ]
+  },
+  
+export default user;

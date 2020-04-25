@@ -1,0 +1,28 @@
+const DisscusionTest = [
+  {
+    id: 1,
+    text: "First Post",
+    completed: true,
+    name: "FirstName LastName",
+  },
+  {
+    id: 2,
+    text: "Second box has more crap ",
+    completed: true,
+    name: "FirstName LastName",
+    
+  },
+  {
+    id: 3,
+    text: "third",
+    completed: true,
+    name: "FirstName LastName",
+  },
+  {
+    id: 4,
+    text: "fourth at the top cause would be most recent ",
+    completed: true,
+    name: "FirstName LastName",
+  },
+];
+export default DisscusionTest;

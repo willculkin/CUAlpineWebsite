@@ -1,0 +1,24 @@
+
+const Trips = [
+  {
+    id: 1,
+    text: "Shelf Road",
+    coverPhoto: "climbingPhotos/DSC00260.jpg",
+    Users: [
+      "FirstName LastName",
+      "FirstName LastName",
+      
+    ],
+  },
+  {
+    id: 2,
+    text: "Rifle",
+    coverPhoto: "climbingPhotos/DSC00524.JPG",
+    Users: [
+      "FirstName LastName",
+      "FirstName LastName",
+      
+    ],
+  },
+];
+export default Photos;
