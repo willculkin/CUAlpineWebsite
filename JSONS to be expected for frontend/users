@@ -8,7 +8,8 @@ const user = [
     ]
     TripsApplied: [
         "Shelf Road" , "Rifle" ," Indian Creek" ," ETC"
-    ]
+    ],
+    IsBoardMember: true
   },
   
 export default user;
