@@ -1,33 +1,43 @@
 import React from "react";
-import { withAuth } from "@okta/okta-react";
+import { Link, Redirect } from "react-router-dom";
 
-export default withAuth(
-  class ProfilePage extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = { user: null };
-      this.getCurrentUser = this.getCurrentUser.bind(this);
-    }
+class ProfilePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { user: null, isLoggedIn: true };
+    this.getCurrentUser = this.getCurrentUser.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-    async getCurrentUser() {
-      this.props.auth.getUser().then((user) => this.setState({ user }));
-    }
+  async getCurrentUser() {}
 
-    componentDidMount() {
-      this.getCurrentUser();
-    }
+  componentDidMount() {
+    this.getCurrentUser();
+    this.setState({ isLoggedIn: localStorage.getItem("authticated") });
+  }
 
-    render() {
-      if (!this.state.user) return null;
+  handleSubmit(e) {
+    localStorage.setItem("authenticated", false);
+    this.setState({ isLoggedIn: false });
+  }
+  render() {
+    if (!this.state.isLoggedIn) {
       return (
-        <section className="user-profile">
-          <h1>User Profile</h1>
-          <div>
-            <label>Name:</label>
-            <span>{this.state.user.name}</span>
-          </div>
-        </section>
+        <Link to={"./login"} style={{ color: "balck" }}>
+          You don't seem to be logged in please click here to login
+        </Link>
       );
     }
+    return (
+      <section className="user-profile">
+        <h1>User Profile</h1>
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <input id="submit" type="submit" value="Logout" />
+          </form>
+        </div>
+      </section>
+    );
   }
-);
+}
+export default ProfilePage;

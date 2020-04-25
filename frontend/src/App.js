@@ -9,13 +9,13 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import { Route } from "react-router-dom";
-import { SecureRoute, ImplicitCallback } from "@okta/okta-react";
 
 import Navigation from "./pages/shared/Navigation";
-import RegistrationForm from "./pages/forms/RegistrationForm";
+import RegistrationForm from "./pages/auth/RegistrationForm";
 import config from "./app.config";
-import LoginPage from "./pages/Login";
 import ProfilePage from "./pages/auth/ProfilePage";
+import SelectedYearPhotos from "./pages/PhotosComponents/SelectedYearPhotos.jsx";
+import Login from "./pages/Login";
 
 class App extends Component {
   constructor() {
@@ -42,17 +42,14 @@ class App extends Component {
         />
         <main>
           <Route path="/" exact component={Home} />
-          <Route
-            path="/login"
-            render={() => <LoginPage baseUrl={config.url} />}
-          />
-          <Route path="/implicit/callback" component={ImplicitCallback} />
+          <Route path="/login" component={Login} />
           <Route path="/trips" component={Trips} />
           <Route path="/photos" component={Photos} />
           <Route path="/register" component={RegistrationForm} />
           <Route path="/membership" component={Membership} />
           <Route path="/disscusion" component={Disscusion} />
-          <SecureRoute path="/profile" component={ProfilePage} />
+          <Route path="/profile" component={ProfilePage} />
+          <Route path="/selectedyearphotos" component={SelectedYearPhotos} />
         </main>
       </div>
     );

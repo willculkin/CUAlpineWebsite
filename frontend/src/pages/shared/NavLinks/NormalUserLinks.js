@@ -26,8 +26,8 @@ const NormalUserLinks = [
     icon: "ion-ios-briefcase",
   },
   {
-    text: "Login",
-    path: "/login",
+    text: "Profile",
+    path: "/profile",
     icon: "ion-ios-briefcase",
   },
 ];
