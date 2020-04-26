@@ -6,7 +6,6 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: false,
       error: null,
       email: "",
       password: "",
@@ -41,7 +40,7 @@ class Login extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault()
+    event.preventDefault();
     const loginInfo = [this.state.email, this.state.password];
     const checkIfLoggedIn = this.getData(loginInfo);
     if (checkIfLoggedIn) {
@@ -51,8 +50,8 @@ class Login extends React.Component {
     var value = "";
     this.setState({
       email: value,
-      password: value
-    })
+      password: value,
+    });
   }
 
   handleEmailChange(e) {
@@ -64,10 +63,10 @@ class Login extends React.Component {
   }
 
   render() {
-    if (this.state.isLoggedIn) {
+    if (JSON.parse(localStorage.getItem("authenticated"))) {
       return (
         <Link to={"./profile"} style={{ color: "balck" }}>
-          Click Here To Go To Profile
+          Your already logged in please click here to go to your profile
         </Link>
       );
     }

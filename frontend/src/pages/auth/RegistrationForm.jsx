@@ -42,7 +42,7 @@ class RegistrationForm extends Component {
         return res.json();
       })
       .then((msg) => {
-        console.log(msg)
+        console.log(msg);
         return msg;
       });
   }
@@ -72,7 +72,7 @@ class RegistrationForm extends Component {
   }
   //this needs to go to a data base and should work
   handleClick(event) {
-    event.preventDefault()
+    event.preventDefault();
     if (!this.arePasswordsTheSame()) {
       return <h1>Passwords are different or not long enough try again</h1>;
     }
@@ -96,7 +96,7 @@ class RegistrationForm extends Component {
       firstNameBox: value,
       lastNameBox: value,
       rePasswordBox: value,
-    })
+    });
   }
 
   handleFNChange(event) {
