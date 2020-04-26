@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 
-export default class TradForm extends Component {
+export default class SportForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,17 +13,31 @@ export default class TradForm extends Component {
       canDrive: true,
       numberOfPeople: 0,
       foodRestrictions: "",
+      topRope: false,
+      leadClimb: false,
+      leadTradClimb: false,
+      gear: 0,
+      loadingErr: false,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
+
+  handleSubmit(data) {
+    console.log("test");
+  }
+
   componentDidMount() {
-    this.setState({
-      id: 1,
-      text: this.props.location.state.tripInfo.text,
-      coverPhoto: this.props.location.state.tripInfo.coverPhoto,
-      Users: this.props.location.state.tripInfo.Users,
-      date: this.props.location.state.tripInfo.date,
-    });
+    if (this.props.location.state === undefined) {
+      this.setState({ loadingErr: true });
+    } else {
+      this.setState({
+        id: this.props.location.state.tripInfo.id,
+        text: this.props.location.state.tripInfo.text,
+        coverPhoto: this.props.location.state.tripInfo.coverPhoto,
+        Users: this.props.location.state.tripInfo.Users,
+        date: this.props.location.state.tripInfo.date,
+      });
+    }
   }
 
   handleInputChange(event) {
@@ -50,6 +65,20 @@ export default class TradForm extends Component {
         </label>
       );
     }
+    if (this.state.loadingErr === true) {
+      const info = String(this.state.text);
+      return (
+        <Redirect
+          to={{
+            pathname: "./sumbitted",
+            state: {
+              id: info,
+            },
+          }}
+        />
+      );
+    }
+
     return (
       <div>
         <h1>
@@ -79,6 +108,49 @@ export default class TradForm extends Component {
             Food restrictions:
             <input name="foodRestrictions" onChange={this.handleInputChange} />
           </label>
+          Check all that apply
+          <br />
+          <label>
+            Comfortable top rope belaying
+            <input
+              name="topRope"
+              type="checkbox"
+              checked={this.state.topRope}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Comfortable sport climbing
+            <input
+              name="leadClimb"
+              type="checkbox"
+              checked={this.state.leadClimb}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Comfortable leading trad climbing
+            <input
+              name="leadTradClimb"
+              type="checkbox"
+              checked={this.state.leadTradClimb}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            How much gear do you have
+            <input
+              name="gear"
+              type="number"
+              value={this.state.gear}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <br />
+          <input id="submit" type="submit" value="Submit" />
         </form>
       </div>
     );
