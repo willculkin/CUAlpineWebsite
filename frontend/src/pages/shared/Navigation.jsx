@@ -20,24 +20,23 @@ class Navigation extends React.Component {
   }
 
   componentDidMount() {
-    var authenticateded = JSON.parse(localStorage.getItem("authticated"));
+    var authenticateded = JSON.parse(localStorage.getItem("authenticated"));
     this.setState({ authenticated: authenticateded });
   }
 
   checkAuthentication() {
-    console.log(this.state.authenticated, localStorage.getItem("authticated"));
+    console.log(this.state.authenticated, localStorage.getItem("authenticated"));
     if (
       this.state.authenticated !==
-      JSON.parse(localStorage.getItem("authticated"))
+      JSON.parse(localStorage.getItem("authenticated"))
     ) {
       this.setAuthentication();
     }
     return true;
   }
   setAuthentication() {
-    console.log("sfdg");
     this.setState({
-      authenticated: JSON.parse(localStorage.getItem("authticated")),
+      authenticated: JSON.parse(localStorage.getItem("authenticated")),
     });
     this.forceUpdate();
   }

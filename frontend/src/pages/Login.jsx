@@ -31,7 +31,6 @@ class Login extends React.Component {
       .then((res) => res.json())
       .then((msg) => {
         if (msg) {
-          console.log(msg);
           localStorage.setItem("authenticated", true);
           this.setState({ isLoggedIn: true });
           return;
@@ -43,7 +42,13 @@ class Login extends React.Component {
   }
 
   handleSubmit(data) {
-    this.getData(this.state.username);
+    const isLoggedIn = true;
+    const loginInfo = [this.state.username, this.state.password]
+    this.getData(loginInfo);
+    this.setState({ isLoggedIn: isLoggedIn });
+    if (isLoggedIn) {
+      localStorage.setItem("user", this.state.username);
+    }
   }
 
   handleUsernameChange(e) {
@@ -58,9 +63,9 @@ class Login extends React.Component {
     if (this.state.isLoggedIn) {
       return (
         <Link to={"./profile"} style={{ color: "balck" }}>
-          Your already logged in please click here to go to your profile
+          Click Here To Go To Profile
         </Link>
-      );
+    );
     }
 
     return (

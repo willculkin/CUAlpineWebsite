@@ -35,6 +35,20 @@ public class User {
     public void setEmail(String name) {
         this.name = name;
     }
+    public String getFirstName() {
+        return firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+    public boolean checkPassword(String pwd) {
+        if(pwd.equals(this.password)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     @Override
     public String toString() {
         return "User{" +

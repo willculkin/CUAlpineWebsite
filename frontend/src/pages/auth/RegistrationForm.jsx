@@ -63,6 +63,7 @@ class RegistrationForm extends Component {
       lastNameBox: lastNameBox,
     });
     localStorage.setItem("authenticated", true);
+    localStorage.setItem("user", this.state.emailBox);
   }
 
   handleFNChange(event) {

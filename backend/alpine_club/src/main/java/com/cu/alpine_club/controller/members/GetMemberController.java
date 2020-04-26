@@ -21,21 +21,17 @@ import com.mongodb.client.MongoClients;
 import java.util.List;
 
 @RestController
-public class CheckMemberController {
+public class GetMemberController {
 
     @Autowired
     UserMongoRepository userMongoRepository;
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping("/CheckUser")
-    public boolean checkMember(@RequestBody String[] data) throws Exception {
+    @RequestMapping("/GetUser")
+    public String[] getMember(@RequestBody String data) throws Exception {
         boolean empty;
-        List<User> test =  userMongoRepository.findByName(data[0]);
-        if (test.isEmpty() || !test.get(0).checkPassword(data[1])){
-          return false;
-        }
-        else {
-          return true;
-        }
+        List<User> user =  userMongoRepository.findByName(data.replace("\"", ""));
+        String[] userData = {user.get(0).getEmail(),user.get(0).getFirstName(), user.get(0).getLastName()};
+        return userData;
     }
 }
