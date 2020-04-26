@@ -25,6 +25,7 @@ class ProfilePage extends React.Component {
     })
       .then((res) => res.json())
       .then((msg) => {
+        console.log(msg)
         this.setState({user: msg[0]})
         this.setState({firstName: msg[1]})
         this.setState({lastName: msg[2]})

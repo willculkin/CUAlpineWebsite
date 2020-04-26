@@ -18,6 +18,7 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import com.mongodb.client.MongoClients;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -28,10 +29,16 @@ public class GetMemberController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping("/GetUser")
-    public String[] getMember(@RequestBody String data) throws Exception {
+    public HashMap getMember(@RequestBody String data) throws Exception {
         boolean empty;
         List<User> user =  userMongoRepository.findByName(data.replace("\"", ""));
-        String[] userData = {user.get(0).getEmail(),user.get(0).getFirstName(), user.get(0).getLastName()};
-        return userData;
+        HashMap<String, String> map = new HashMap<>();
+        map.put("FirstName",user.get(0).getFirstName());
+        map.put("LastName",user.get(0).getLastName());
+        map.put("Email",user.get(0).getEmail());
+//        String[] userData = {"firstName":user.get(0).getFirstName(),
+//                            "LastName": user.get(0).getLastName(),
+//                            "email":user.get(0).getEmail()};
+        return map;
     }
 }
