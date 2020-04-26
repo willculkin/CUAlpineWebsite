@@ -56,6 +56,7 @@ class Disscusion extends Component {
 
   //this needs to go to a data base and should work
   handleClick(event) {
+    event.preventDefault()
     const textBoxs = this.state.textBoxs;
     const currentBox = "";
     this.putdata(this.state.currentBox);
