@@ -17,12 +17,12 @@ const LoggedOutLinks = [
 
   {
     text: "Trips",
-    path: "/trips",
+    path: "/viewtripsPleaselogin",
     icon: "ion-ios-bonfire",
   },
   {
     text: "Membership",
-    path: "/membership",
+    path: "/login",
     icon: "ion-ios-briefcase",
   },
   {

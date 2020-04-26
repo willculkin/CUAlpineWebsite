@@ -36,7 +36,6 @@ class Navigation extends React.Component {
   }
   setAuthentication() {
     console.log("sfdg");
-
     this.setState({
       authenticated: JSON.parse(localStorage.getItem("authticated")),
     });
@@ -46,7 +45,6 @@ class Navigation extends React.Component {
     if (!this.checkAuthentication()) {
       this.setAuthentication();
     }
-    console.log(this.state.authenticated, localStorage.getItem("authticated"));
   }
 
   render() {
