@@ -89,6 +89,14 @@ class RegistrationForm extends Component {
       localStorage.setItem("user", this.state.emailBox);
       localStorage.setItem("authenticated", true);
     }
+    var value = "";
+    this.setState({
+      passBox: value,
+      emailBox: value,
+      firstNameBox: value,
+      lastNameBox: value,
+      rePasswordBox: value,
+    })
   }
 
   handleFNChange(event) {

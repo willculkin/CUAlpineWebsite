@@ -48,6 +48,11 @@ class Login extends React.Component {
       localStorage.setItem("user", this.state.email);
       localStorage.setItem("authenticated", true);
     }
+    var value = "";
+    this.setState({
+      email: value,
+      password: value
+    })
   }
 
   handleEmailChange(e) {
