@@ -23,7 +23,8 @@ class RegistrationForm extends Component {
     this.handlereEnterPasswordChange = this.handlereEnterPasswordChange.bind(this);
   }
 
-  putdata(data) {
+  putdata(email, pass, fN, lN) {
+    const data = [email, pass, fN, lN];
     fetch("http://localhost:8080/CreateUser", {
       method: "POST",
       mode: "cors",
@@ -53,7 +54,7 @@ class RegistrationForm extends Component {
     if (!this.arePasswordsTheSame()) {
       return <h1>Passwords are different or not long enough try again</h1>;
     }
-    this.putdata(this.state.emailBox);
+    this.putdata(this.state.emailBox, this.state.passBox, this.state.firstNameBox, this.state.lastNameBox);
     this.setState({
       passBox: passBox,
       rePasswordBox: rePasswordBox,

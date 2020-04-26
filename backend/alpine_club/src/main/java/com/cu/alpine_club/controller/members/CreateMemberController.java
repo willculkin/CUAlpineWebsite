@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 @RestController
 public class CreateMemberController {
     @Autowired
@@ -17,8 +19,7 @@ public class CreateMemberController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/CreateUser", method = RequestMethod.POST)
-    public void createMember(@RequestBody String payload) throws Exception {
-        System.out.println("in create");
-        userMongoRepository.save(new User(payload, 45));
+    public void createMember(@RequestBody String[] data) throws Exception {
+        userMongoRepository.save(new User(data[0], data[1], data[2], data[3]));
     }
 }

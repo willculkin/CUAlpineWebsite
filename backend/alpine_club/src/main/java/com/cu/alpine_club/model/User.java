@@ -12,12 +12,16 @@ public class User {
     @Id
     private String id;
     private String name;
-    private int age;
+    private String password;
+    private String firstName;
+    private String lastName;
     public User() {
     }
-    public User(String name, int age) {
+    public User(String name, String password, String firstName, String lastName) {
         this.name = name;
-        this.age = age;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
     public String getId() {
         return id;
@@ -25,23 +29,19 @@ public class User {
     public void setId(String id) {
         this.id = id;
     }
-    public String getName() {
+    public String getEmail() {
         return name;
     }
-    public void setName(String name) {
+    public void setEmail(String name) {
         this.name = name;
-    }
-    public int getAge() {
-        return age;
-    }
-    public void setAge(int age) {
-        this.age = age;
     }
     @Override
     public String toString() {
         return "User{" +
                 ", name='" + name + '\'' +
-                ", Age=" + age +
+                ", password=" + password +
+                ", first name=" + firstName +
+                ", last name=" + lastName +
                 '}';
     }
 }
