@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 
 export default class SportForm extends Component {
   constructor(props) {
@@ -12,17 +13,28 @@ export default class SportForm extends Component {
       canDrive: true,
       numberOfPeople: 0,
       foodRestrictions: "",
+      topRope: false,
+      leadClimb: false,
+      loadingErr: false,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
   componentDidMount() {
-    this.setState({
-      id: 1,
-      text: this.props.location.state.tripInfo.text,
-      coverPhoto: this.props.location.state.tripInfo.coverPhoto,
-      Users: this.props.location.state.tripInfo.Users,
-      date: this.props.location.state.tripInfo.date,
-    });
+    if (this.props.location.state === undefined) {
+      this.setState({ loadingErr: true });
+    } else {
+      this.setState({
+        id: this.props.location.state.tripInfo.id,
+        text: this.props.location.state.tripInfo.text,
+        coverPhoto: this.props.location.state.tripInfo.coverPhoto,
+        Users: this.props.location.state.tripInfo.Users,
+        date: this.props.location.state.tripInfo.date,
+      });
+    }
+  }
+
+  handleSubmit(data) {
+    console.log("test");
   }
 
   handleInputChange(event) {
@@ -48,6 +60,19 @@ export default class SportForm extends Component {
             onChange={this.handleInputChange}
           />
         </label>
+      );
+    }
+    if (this.state.loadingErr === true) {
+      const info = String(this.state.text);
+      return (
+        <Redirect
+          to={{
+            pathname: "./sumbitted",
+            state: {
+              id: info,
+            },
+          }}
+        />
       );
     }
     return (
@@ -86,11 +111,22 @@ export default class SportForm extends Component {
             <input
               name="topRope"
               type="checkbox"
-              checked={this.state.canDrive}
+              checked={this.state.topRope}
               onChange={this.handleInputChange}
             />
           </label>
           <br />
+          <label>
+            Comfortable lead climbing
+            <input
+              name="leadClimb"
+              type="checkbox"
+              checked={this.state.leadClimb}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <br />
+          <input id="submit" type="submit" value="Submit" />
         </form>
       </div>
     );

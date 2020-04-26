@@ -5,6 +5,8 @@ import Photos from "./pages/Photos.jsx";
 import Membership from "./pages/Membership.jsx";
 import ViewTrips from "./pages/TripsComponentents/ViewTrips.jsx";
 import CreateTrips from "./pages/TripsComponentents/CreateTrips.jsx";
+import Sumbitted from "./pages/TripsComponentents/Submitted.jsx";
+
 import unregisteredTrips from "./pages/TripsComponentents/unregisteredTrips.jsx";
 
 import Home from "./pages/Home.jsx";
@@ -58,6 +60,7 @@ class App extends Component {
           <Route path="/SportForm" component={SportForm} />
           <Route path="/TradForm" component={TradForm} />
           <Route path="/selectedyearphotos" component={SelectedYearPhotos} />
+          <Route path="/sumbitted" component={Sumbitted} />
         </main>
       </div>
     );
