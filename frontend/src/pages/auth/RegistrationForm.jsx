@@ -11,16 +11,20 @@ class RegistrationForm extends Component {
     this.state = {
       passBox: "",
       emailBox: "",
+      userName: "",
       firstNameBox: "",
       lastNameBox: "",
       rePasswordBox: "",
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleUNChange = this.handleUNChange.bind(this);
     this.handleFNChange = this.handleFNChange.bind(this);
     this.handleLNChange = this.handleLNChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePassChange = this.handlePassChange.bind(this);
-    this.handlereEnterPasswordChange = this.handlereEnterPasswordChange.bind(this);
+    this.handlereEnterPasswordChange = this.handlereEnterPasswordChange.bind(
+      this
+    );
   }
 
   putdata(email, pass, fN, lN) {
@@ -43,29 +47,55 @@ class RegistrationForm extends Component {
         return msg;
       });
   }
-
+  getData(data) {
+    fetch("http://localhost:8080/CheckUser", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((msg) => {
+        if (msg) {
+          localStorage.setItem("authenticated", true);
+          this.setState({ isLoggedIn: true });
+          return;
+        } else {
+          localStorage.setItem("authenticated", false);
+          this.setState({ isLoggedIn: false });
+        }
+      });
+  }
   //this needs to go to a data base and should work
   handleClick(event) {
-    const passBox = "";
-    const emailBox = "";
-    const firstNameBox = "";
-    const lastNameBox = "";
-    const rePasswordBox = "";
     if (!this.arePasswordsTheSame()) {
       return <h1>Passwords are different or not long enough try again</h1>;
     }
-    this.putdata(this.state.emailBox, this.state.passBox, this.state.firstNameBox, this.state.lastNameBox);
-    this.setState({
-      passBox: passBox,
-      rePasswordBox: rePasswordBox,
-      emailBox: emailBox,
-      firstNameBox: firstNameBox,
-      lastNameBox: lastNameBox,
-    });
-    localStorage.setItem("authenticated", true);
-    localStorage.setItem("user", this.state.emailBox);
+    this.putdata(
+      this.state.emailBox,
+      this.state.passBox,
+      this.state.firstNameBox,
+      this.state.lastNameBox,
+      this.state.userName
+    );
+
+    const loginInfo = [this.state.userName, this.state.passBox];
+    const checkIfLoggedIn = this.getData(loginInfo);
+    if (checkIfLoggedIn) {
+      localStorage.setItem("user", this.state.username);
+      localStorage.setItem("authenticated", true);
+    }
   }
 
+  handleUNChange(event) {
+    const { value } = event.target;
+    this.setState({ userName: value });
+  }
   handleFNChange(event) {
     const { value } = event.target;
     this.setState({ firstNameBox: value });
@@ -89,68 +119,78 @@ class RegistrationForm extends Component {
   }
 
   arePasswordsTheSame() {
-    if (this.state.passBox === this.state.rePasswordBox && this.state.passBox.length > 5) {
+    if (
+      this.state.passBox === this.state.rePasswordBox &&
+      this.state.passBox.length > 5
+    ) {
       return true;
     }
     return false;
   }
 
   render() {
+    if (JSON.parse(localStorage.getItem("authenticated"))) {
+      return (
+        <Link to={"./profile"} style={{ color: "balck" }}>
+          Your already logged in please click here to go to your profile
+        </Link>
+      );
+    }
 
-  if (JSON.parse(localStorage.getItem("authenticated"))) {
-    return (
-      <Link to={"./profile"} style={{ color: "balck" }}>
-        Your already logged in please click here to go to your profile
-      </Link>
-    );
-  }
-
-  const submit = !this.arePasswordsTheSame() ? (
-    <h3>
-      Please make sure the passwords are the same and at least 6 characters
-    </h3>
+    const submit = !this.arePasswordsTheSame() ? (
+      <h3>
+        Please make sure the passwords are the same and at least 6 characters
+      </h3>
     ) : (
-    ""
+      ""
     );
 
     return (
       <div>
         <h1>
-          {this.props.name !== undefined ? this.props.name : "Member Registration"}
+          {this.props.name !== undefined
+            ? this.props.name
+            : "Member Registration"}
         </h1>
         <form>
+          <label>User Name: </label>
+          <TextareaAutosize
+            value={this.state.userName}
+            onChange={this.handleUNChange}
+          />
+          <br />
           <label>First Name: </label>
           <TextareaAutosize
             value={this.state.firstNameBox}
             onChange={this.handleFNChange}
           />
-          <br/>
+          <br />
           <label>Last Name: </label>
           <TextareaAutosize
             value={this.state.lastNameBox}
             onChange={this.handleLNChange}
           />
-          <br/>
+          <br />
           <label>Email: </label>
           <TextareaAutosize
             value={this.state.emailBox}
             onChange={this.handleEmailChange}
           />
-          <br/>
+          <br />
           <label>Password: </label>
           <TextareaAutosize
             value={this.state.passBox}
             onChange={this.handlePassChange}
           />
-          <br/>
+          <br />
           <label>Re-Enter Password: </label>
           <TextareaAutosize
             value={this.state.rePasswordBox}
             onChange={this.handlereEnterPasswordChange}
           />
-          <br/>
+          <br />
           {submit}
-          <br/>
+          <br />
           <button onClick={this.handleClick}>Submit</button>
         </form>
       </div>

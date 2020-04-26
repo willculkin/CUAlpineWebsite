@@ -32,22 +32,20 @@ class Login extends React.Component {
       .then((msg) => {
         if (msg) {
           localStorage.setItem("authenticated", true);
-          this.setState({ isLoggedIn: true });
-          return;
+          return true;
         } else {
           localStorage.setItem("authenticated", false);
-          this.setState({ isLoggedIn: false });
+          return false;
         }
       });
   }
 
   handleSubmit(data) {
-    const isLoggedIn = true;
-    const loginInfo = [this.state.username, this.state.password]
-    this.getData(loginInfo);
-    this.setState({ isLoggedIn: isLoggedIn });
-    if (isLoggedIn) {
+    const loginInfo = [this.state.username, this.state.password];
+    const checkIfLoggedIn = this.getData(loginInfo);
+    if (checkIfLoggedIn) {
       localStorage.setItem("user", this.state.username);
+      localStorage.setItem("authenticated", true);
     }
   }
 
@@ -65,7 +63,7 @@ class Login extends React.Component {
         <Link to={"./profile"} style={{ color: "balck" }}>
           Click Here To Go To Profile
         </Link>
-    );
+      );
     }
 
     return (
