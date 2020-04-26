@@ -31,14 +31,16 @@ public class GetMemberController {
     @RequestMapping("/GetUser")
     public HashMap getMember(@RequestBody String data) throws Exception {
         boolean empty;
+        System.out.println(data);
         List<User> user =  userMongoRepository.findByName(data.replace("\"", ""));
+        System.out.println(user);
         HashMap<String, String> map = new HashMap<>();
         map.put("FirstName",user.get(0).getFirstName());
         map.put("LastName",user.get(0).getLastName());
         map.put("Email",user.get(0).getEmail());
-//        String[] userData = {"firstName":user.get(0).getFirstName(),
-//                            "LastName": user.get(0).getLastName(),
-//                            "email":user.get(0).getEmail()};
+//        String[] userData = {user.get(0).getFirstName(),
+//                            user.get(0).getLastName(),
+//                            user.get(0).getEmail()};
         return map;
     }
 }
