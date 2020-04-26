@@ -17,7 +17,7 @@ const BoardMemberLinks = [
 
   {
     text: "Trips",
-    path: "/trips",
+    path: "/createtrips",
     icon: "ion-ios-bonfire",
   },
   {

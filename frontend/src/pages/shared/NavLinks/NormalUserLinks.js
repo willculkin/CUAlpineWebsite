@@ -17,7 +17,7 @@ const NormalUserLinks = [
 
   {
     text: "Trips",
-    path: "/trips",
+    path: "/viewtrips",
     icon: "ion-ios-bonfire",
   },
   {
