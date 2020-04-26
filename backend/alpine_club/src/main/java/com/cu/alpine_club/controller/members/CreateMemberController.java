@@ -20,6 +20,7 @@ public class CreateMemberController {
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/CreateUser", method = RequestMethod.POST)
     public void createMember(@RequestBody String[] data) throws Exception {
+        System.out.println("in create user");
         userMongoRepository.save(new User(data[0], data[1], data[2], data[3]));
     }
 }

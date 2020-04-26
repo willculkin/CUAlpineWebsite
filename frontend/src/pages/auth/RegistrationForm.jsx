@@ -26,7 +26,7 @@ class RegistrationForm extends Component {
   }
 
   putdata(email, pass, fN, lN) {
-    const data = [email, pass, fN, lN];
+    var data = [email, pass, fN, lN];
     fetch("http://localhost:8080/CreateUser", {
       method: "POST",
       mode: "cors",
@@ -42,6 +42,7 @@ class RegistrationForm extends Component {
         return res.json();
       })
       .then((msg) => {
+        console.log(msg)
         return msg;
       });
   }
@@ -71,6 +72,7 @@ class RegistrationForm extends Component {
   }
   //this needs to go to a data base and should work
   handleClick(event) {
+    event.preventDefault()
     if (!this.arePasswordsTheSame()) {
       return <h1>Passwords are different or not long enough try again</h1>;
     }
@@ -81,8 +83,8 @@ class RegistrationForm extends Component {
       this.state.lastNameBox
     );
 
-    const loginInfo = [this.state.emailBox, this.state.passBox];
-    const checkIfLoggedIn = this.getData(loginInfo);
+    var loginInfo = [this.state.emailBox, this.state.passBox];
+    var checkIfLoggedIn = this.getData(loginInfo);
     if (checkIfLoggedIn) {
       localStorage.setItem("user", this.state.emailBox);
       localStorage.setItem("authenticated", true);
@@ -90,24 +92,24 @@ class RegistrationForm extends Component {
   }
 
   handleFNChange(event) {
-    const { value } = event.target;
+    var { value } = event.target;
     this.setState({ firstNameBox: value });
   }
   handleLNChange(event) {
-    const { value } = event.target;
+    var { value } = event.target;
     this.setState({ lastNameBox: value });
   }
   handleEmailChange(event) {
-    const { value } = event.target;
+    var { value } = event.target;
     this.setState({ emailBox: value });
   }
   handlePassChange(event) {
-    const { value } = event.target;
+    var { value } = event.target;
     this.setState({ passBox: value });
   }
 
   handlereEnterPasswordChange(event) {
-    const { value } = event.target;
+    var { value } = event.target;
     this.setState({ rePasswordBox: value });
   }
 

@@ -40,7 +40,8 @@ class Login extends React.Component {
       });
   }
 
-  handleSubmit(data) {
+  handleSubmit(event) {
+    event.preventDefault()
     const loginInfo = [this.state.email, this.state.password];
     const checkIfLoggedIn = this.getData(loginInfo);
     if (checkIfLoggedIn) {
