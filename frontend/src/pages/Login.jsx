@@ -8,12 +8,12 @@ class Login extends React.Component {
     this.state = {
       isLoggedIn: false,
       error: null,
-      username: "",
+      email: "",
       password: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
   getData(data) {
@@ -41,16 +41,16 @@ class Login extends React.Component {
   }
 
   handleSubmit(data) {
-    const loginInfo = [this.state.username, this.state.password];
+    const loginInfo = [this.state.email, this.state.password];
     const checkIfLoggedIn = this.getData(loginInfo);
     if (checkIfLoggedIn) {
-      localStorage.setItem("user", this.state.username);
+      localStorage.setItem("user", this.state.email);
       localStorage.setItem("authenticated", true);
     }
   }
 
-  handleUsernameChange(e) {
-    this.setState({ username: e.target.value });
+  handleEmailChange(e) {
+    this.setState({ email: e.target.value });
   }
 
   handlePasswordChange(e) {
@@ -73,12 +73,12 @@ class Login extends React.Component {
 
         <form onSubmit={this.handleSubmit}>
           <div className="form-element">
-            <label>Username:</label>
+            <label>email:</label>
             <input
-              id="username"
+              id="email"
               type="text"
-              value={this.state.username}
-              onChange={this.handleUsernameChange}
+              value={this.state.email}
+              onChange={this.handleEmailChange}
             />
           </div>
 

@@ -11,13 +11,11 @@ class RegistrationForm extends Component {
     this.state = {
       passBox: "",
       emailBox: "",
-      userName: "",
       firstNameBox: "",
       lastNameBox: "",
       rePasswordBox: "",
     };
     this.handleClick = this.handleClick.bind(this);
-    this.handleUNChange = this.handleUNChange.bind(this);
     this.handleFNChange = this.handleFNChange.bind(this);
     this.handleLNChange = this.handleLNChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -80,22 +78,17 @@ class RegistrationForm extends Component {
       this.state.emailBox,
       this.state.passBox,
       this.state.firstNameBox,
-      this.state.lastNameBox,
-      this.state.userName
+      this.state.lastNameBox
     );
 
-    const loginInfo = [this.state.userName, this.state.passBox];
+    const loginInfo = [this.state.emailBox, this.state.passBox];
     const checkIfLoggedIn = this.getData(loginInfo);
     if (checkIfLoggedIn) {
-      localStorage.setItem("user", this.state.username);
+      localStorage.setItem("user", this.state.emailBox);
       localStorage.setItem("authenticated", true);
     }
   }
 
-  handleUNChange(event) {
-    const { value } = event.target;
-    this.setState({ userName: value });
-  }
   handleFNChange(event) {
     const { value } = event.target;
     this.setState({ firstNameBox: value });
@@ -153,12 +146,6 @@ class RegistrationForm extends Component {
             : "Member Registration"}
         </h1>
         <form>
-          <label>User Name: </label>
-          <TextareaAutosize
-            value={this.state.userName}
-            onChange={this.handleUNChange}
-          />
-          <br />
           <label>First Name: </label>
           <TextareaAutosize
             value={this.state.firstNameBox}

@@ -9,7 +9,11 @@ export default class SportForm extends Component {
       coverPhoto: null,
       Users: null,
       date: null,
+      canDrive: true,
+      numberOfPeople: 0,
+      foodRestrictions: "",
     };
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
   componentDidMount() {
     this.setState({
@@ -20,8 +24,32 @@ export default class SportForm extends Component {
       date: this.props.location.state.tripInfo.date,
     });
   }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.name === "canDrive" ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value,
+    });
+  }
   render() {
     console.log(this.state.trip, "dfsg");
+    let canDrive;
+    if (this.state.canDrive) {
+      canDrive = (
+        <label>
+          How many people can fit in your car:
+          <input
+            name="numberOfPeople"
+            type="number"
+            value={this.state.numberOfPeople}
+            onChange={this.handleInputChange}
+          />
+        </label>
+      );
+    }
     return (
       <div>
         <h1>
@@ -34,7 +62,36 @@ export default class SportForm extends Component {
           <br />
           Please Fill everything out
         </h1>
-        <form></form>
+        <form>
+          <label>
+            Can Drive:
+            <input
+              name="canDrive"
+              type="checkbox"
+              checked={this.state.canDrive}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <br />
+          {canDrive}
+          <br />
+          <label>
+            Food restrictions:
+            <input name="foodRestrictions" onChange={this.handleInputChange} />
+          </label>
+          Check all that apply
+          <br />
+          <label>
+            Comfortable top rope belaying
+            <input
+              name="topRope"
+              type="checkbox"
+              checked={this.state.canDrive}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <br />
+        </form>
       </div>
     );
   }
