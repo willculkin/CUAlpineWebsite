@@ -17,9 +17,11 @@ public class CreateDiscussionController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/CreateDiscussion", method = RequestMethod.POST)
-    public void home(@RequestBody String payload) throws Exception {
+    public void home(@RequestBody String[] data) throws Exception {
         System.out.println("in create");
-        System.out.println(payload);
-        discussionMongoRepository.save(new Discussion(payload));
+        System.out.println(data[0]);
+        String user = data[0];
+        String text = data[1];
+        discussionMongoRepository.save(new Discussion(user,text));
     }
 }

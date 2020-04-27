@@ -35,6 +35,9 @@ class Disscusion extends Component {
       });
   }
   putdata(data) {
+    var user = localStorage.getItem("user");
+    var text = data
+    var sendmsg = [user,text];
     fetch("http://localhost:8080/CreateDiscussion", {
       method: "POST",
       mode: "cors",
@@ -44,7 +47,7 @@ class Disscusion extends Component {
       },
       redirect: "follow",
       referrerPolicy: "no-referrer",
-      body: JSON.stringify(data),
+      body: JSON.stringify(sendmsg),
     })
       .then((res) => {
         return res.json();
