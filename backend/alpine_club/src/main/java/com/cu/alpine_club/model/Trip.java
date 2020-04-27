@@ -10,15 +10,16 @@ public class Trip {
     private String id;
     private String text;
     private String coverPhoto;
-    private String [] users;
+    private String users;
 
 
     public Trip() {
     }
 
-    public Trip(String text, String coverPhoto) {
+    public Trip(String text, String coverPhoto, String users) {
         this.text = text;
         this.coverPhoto = coverPhoto;
+        this.users = users;
     }
 
     public String getId() {
@@ -45,21 +46,20 @@ public class Trip {
         this.coverPhoto = coverPhoto;
     }
 
-    public String[] getUsers(){
+    public String getUsers(){
         return users;
     }
 
-    public void setUsers(String[] users){
+    public void setUsers(String users){
         this.users = users;
     }
 
     @Override
     public String toString() {
-        String str_users = Arrays.toString(users);
         return "{" +
                 "text=" + text + "," +
                 "coverPhoto:" + coverPhoto + "," +
-                "users:" + str_users +
+                "users:" + users +
                 '}';
     }
 }

@@ -1,4 +1,5 @@
 package com.cu.alpine_club.controller.Trips;
+import com.cu.alpine_club.model.User;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 
@@ -20,7 +21,7 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import com.mongodb.client.MongoClients;
 
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,10 @@ public class MakeTripsController {
         JsonParser springParser = JsonParserFactory.getJsonParser();
         Map<String,Object> data_object = springParser.parseMap(data);
         System.out.println(data_object);
+        String text = data_object.get("text").toString();
+        String coverPhoto = data_object.get("coverPhoto").toString();
+        String users = data_object.get("users").toString();
+        tripMongoRepository.save(new Trip(text, coverPhoto, users));
         String msg = "{res: ok}";
         return msg;
     }
