@@ -1,9 +1,6 @@
 package com.cu.alpine_club.controller.Trips;
-
-
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
-
 import com.cu.alpine_club.model.Trip;
 import com.cu.alpine_club.repository.TripMongoRepository;
 
@@ -22,25 +19,33 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import com.mongodb.client.MongoClients;
 
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
-public class MakeTripsController {
+public class PutTripUserController {
+
     @Autowired
     TripMongoRepository tripMongoRepository;
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping("/CreateTrips")
-    public String CreateTrip(String data) throws Exception {
-        JsonParser springParser = JsonParserFactory.getJsonParser();
-        Map<String,Object> data_object = springParser.parseMap(data);
-        System.out.println(data_object);
-        String text = data_object.get("text").toString();
-        String coverPhoto = data_object.get("coverPhoto").toString();
-        String users = data_object.get("users").toString();
-        tripMongoRepository.save(new Trip(text, coverPhoto, users));
+    @RequestMapping("/PutTripUser")
+    public String putTripUser(String data) throws Exception {
+        List<Trip> trip = tripMongoRepository.findByText(data); // get trip from db
+        Trip a_trip = trip.get(0);
+        String users = a_trip.getUsers(); // get users
+
+        JsonParser springParser = JsonParserFactory.getJsonParser(); // parse users
+        List<Object> userList = springParser.parseList(users);
+
+        userList.add(data);
+        String user_str = userList.toString();
+
+        a_trip.setUsers(user_str);
+
+        tripMongoRepository.save(a_trip);
+        
         String msg = "{res: ok}";
         return msg;
     }
