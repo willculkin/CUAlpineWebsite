@@ -1,3 +1,9 @@
+// This is where state is handled
+// it works by importing the links that should be available depending on the state
+// to make changes to how state is handled within each state you can edit the compenet that gets rendered when the link is clicked
+// to add new users or compnents to you can add a new link to the navlinks or add a new navlink that tell the navigation how to handle the
+// new state
+
 import React from "react";
 import { Link } from "react-router-dom";
 import NormalUserLinks from "./NavLinks/NormalUserLinks";
@@ -25,7 +31,10 @@ class Navigation extends React.Component {
   }
 
   checkAuthentication() {
-    console.log(this.state.authenticated, localStorage.getItem("authenticated"));
+    console.log(
+      this.state.authenticated,
+      localStorage.getItem("authenticated")
+    );
     if (
       this.state.authenticated !==
       JSON.parse(localStorage.getItem("authenticated"))

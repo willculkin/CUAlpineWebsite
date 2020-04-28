@@ -1,3 +1,4 @@
+// this displays profile information
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 
@@ -25,10 +26,10 @@ class ProfilePage extends React.Component {
     })
       .then((res) => res.json())
       .then((msg) => {
-        console.log(msg)
-        this.setState({user: msg["Email"]})
-        this.setState({firstName: msg["FirstName"]})
-        this.setState({lastName: msg["LastName"]})
+        console.log(msg);
+        this.setState({ user: msg["Email"] });
+        this.setState({ firstName: msg["FirstName"] });
+        this.setState({ lastName: msg["LastName"] });
       });
   }
 
@@ -46,24 +47,27 @@ class ProfilePage extends React.Component {
   render() {
     const isLoggedIn = this.state.isLoggedIn;
     return (
-        <div>
-        {isLoggedIn
-        ? (<section className="user-profile">
+      <div>
+        {isLoggedIn ? (
+          <section className="user-profile">
             <h1>User Profile</h1>
-            <h3>Name: {this.state.firstName} {this.state.lastName} </h3>
+            <h3>
+              Name: {this.state.firstName} {this.state.lastName}{" "}
+            </h3>
             <h3>Username / Email: {this.state.user} </h3>
-              <div>
-                <form onSubmit={this.handleSubmit}>
-                  <input id="submit" type="submit" value="Logout" />
-                </form>
-              </div>
-          </section>)
-        : (<Link to={"./login"} style={{ color: "balck" }}>
-          You don't seem to be logged in please click here to login
-          </Link>)
-        }
-        </div>
-    )
+            <div>
+              <form onSubmit={this.handleSubmit}>
+                <input id="submit" type="submit" value="Logout" />
+              </form>
+            </div>
+          </section>
+        ) : (
+          <Link to={"./login"} style={{ color: "balck" }}>
+            You don't seem to be logged in please click here to login
+          </Link>
+        )}
+      </div>
+    );
   }
 }
 export default ProfilePage;

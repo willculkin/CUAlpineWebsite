@@ -1,3 +1,5 @@
+//wasn't fully imlemented
+
 import React, { Component } from "react";
 import List from "./MembershipComponents/List";
 import { some, isEmpty } from "lodash";
@@ -11,14 +13,14 @@ class Membership extends Component {
     this.getdata();
   }
   getdata() {
-    var name = localStorage.getItem("user")
+    var name = localStorage.getItem("user");
     fetch("http://localhost:8080/GetUser", {
-      method:"POST",
+      method: "POST",
       mode: "cors",
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
-      body: JSON.stringify(name)
+      body: JSON.stringify(name),
     })
       .then((res) => {
         return res.json();
@@ -32,11 +34,13 @@ class Membership extends Component {
     if (isEmpty(this.state.msg)) {
       return <div>Empty</div>;
     } else {
-    return (<div>
-              <div>{this.state.msg.Email}</div>
-              <div>{this.state.msg.FirstName}</div>
-              <div>{this.state.msg.LastName}</div>
-            </div>); //<List data={this.state.msg} />;
+      return (
+        <div>
+          <div>{this.state.msg.Email}</div>
+          <div>{this.state.msg.FirstName}</div>
+          <div>{this.state.msg.LastName}</div>
+        </div>
+      ); //<List data={this.state.msg} />;
     }
     //<div>{this.state.msg}</div>;
   }

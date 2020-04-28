@@ -1,3 +1,5 @@
+// this handles the selected years photos
+//it is coupled a little to home photos, but really just needs the photos it should display which is reasonable
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 class SelectedYearPhotos extends Component {

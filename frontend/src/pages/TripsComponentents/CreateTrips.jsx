@@ -1,3 +1,6 @@
+// this is how special users get treated
+// it uses the view trip compnenet is also used because we want special users to be able ot sign up for trip in the same way as users
+
 import React, { Component } from "react";
 //import Disscusion from "./Disscusion";
 import ViewTrips from "./ViewTrips";

@@ -1,3 +1,5 @@
+// displayes the cover photo for each year and provides a link to the whole calendar
+
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Photos from "./Photos";

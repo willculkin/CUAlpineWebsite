@@ -1,3 +1,7 @@
+// this is the base component that is run in index
+// its only things are a router and a navigation Bar
+// the navigation bar displayes the display link and router tells the website what to do with certain links
+
 import React, { Component } from "react";
 
 import Disscusion from "./pages/Disscusion.jsx";

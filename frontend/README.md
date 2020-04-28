@@ -35,3 +35,5 @@ The front end is done with react and webpack
 - https://github.com/npm/cli/issues/681
 - sudo npm install -g npm@latest
 - need to use node 10 (fixes issue)
+
+#### An explanation of state can be found in navigation where it is implemented and then in trips to see how it works

@@ -1,4 +1,5 @@
-//struggled to get the function to work outside of in Disscusion so moved to disscusion
+// this doesn't do anything because couldn't really figure out how to handle passing information upstream with
+// synthetic events
 
 import React, { Component } from "react";
 import TextareaAutosize from "react-autosize-textarea";

@@ -1,3 +1,5 @@
+// this is the page that gets displayed if the user is not logged in
+
 import React, { Component } from "react";
 
 import trips from "./trips.js";
