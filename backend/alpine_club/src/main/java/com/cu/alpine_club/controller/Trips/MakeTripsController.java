@@ -33,7 +33,8 @@ public class MakeTripsController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping("/CreateTrips")
-    public String CreateTrip(String data) throws Exception {
+    public String CreateTrip(@RequestBody String data) throws Exception {
+        System.out.println(data);
         JsonParser springParser = JsonParserFactory.getJsonParser();
         Map<String,Object> data_object = springParser.parseMap(data);
         System.out.println(data_object);

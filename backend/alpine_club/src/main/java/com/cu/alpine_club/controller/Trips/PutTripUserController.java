@@ -31,22 +31,27 @@ public class PutTripUserController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping("/PutTripUser")
-    public String putTripUser(String data) throws Exception {
+    public String putTripUser(@RequestBody String data) throws Exception {
+        String msg = "";
         List<Trip> trip = tripMongoRepository.findByText(data); // get trip from db
-        Trip a_trip = trip.get(0);
-        String users = a_trip.getUsers(); // get users
+        if(!trip.isEmpty()) {
+            Trip a_trip = trip.get(0);
+            String users = a_trip.getUsers(); // get users
 
-        JsonParser springParser = JsonParserFactory.getJsonParser(); // parse users
-        List<Object> userList = springParser.parseList(users);
+            JsonParser springParser = JsonParserFactory.getJsonParser(); // parse users
+            List<Object> userList = springParser.parseList(users);
 
-        userList.add(data);
-        String user_str = userList.toString();
+            userList.add(data);
+            String user_str = userList.toString();
 
-        a_trip.setUsers(user_str);
+            a_trip.setUsers(user_str);
 
-        tripMongoRepository.save(a_trip);
-        
-        String msg = "{res: ok}";
+            tripMongoRepository.save(a_trip);
+
+            msg = "{res: ok}";
+        } else {
+            msg = "{res: empty}";
+        }
         return msg;
     }
 }
