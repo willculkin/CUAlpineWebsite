@@ -22,6 +22,7 @@ import com.mongodb.client.MongoClients;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 public class PutTripUserController {
@@ -33,16 +34,25 @@ public class PutTripUserController {
     @RequestMapping("/PutTripUser")
     public String putTripUser(@RequestBody String data) throws Exception {
         String msg = "";
-        List<Trip> trip = tripMongoRepository.findByText(data); // get trip from db
+
+        JsonParser springParser = JsonParserFactory.getJsonParser(); // parse users
+        Map<String,Object> dataobject = springParser.parseMap(data);
+        String search = dataobject.get("text").toString();
+        String user = dataobject.get("user").toString();
+
+
+        List<Trip> trip = tripMongoRepository.findByText(search); // get trip from db
         if(!trip.isEmpty()) {
             Trip a_trip = trip.get(0);
+            System.out.println(a_trip.toString());
             String users = a_trip.getUsers(); // get users
 
-            JsonParser springParser = JsonParserFactory.getJsonParser(); // parse users
             List<Object> userList = springParser.parseList(users);
 
-            userList.add(data);
-            String user_str = userList.toString();
+            System.out.println(userList);
+            userList.add(user);
+            List<String> collect = userList.stream().map((Object e)->{return "\""+e.toString()+"\"";}).collect(Collectors.toList());
+            String user_str = collect.toString();
 
             a_trip.setUsers(user_str);
 
