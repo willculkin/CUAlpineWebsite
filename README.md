@@ -8,3 +8,5 @@ Instructions in the frontend readme
 ## backend
 spring framework with connection to mongodb
 Instructions in the backend readme
+
+https://cuboulder.zoom.us/j/92331817778
